@@ -1,0 +1,2 @@
+arm_control:trainer
+-DCATKIN_DEVEL_PREFIX=/home/ben/gripper_proj_2/devel -DCMAKE_INSTALL_PREFIX=/home/ben/gripper_proj_2/install -G Unix Makefiles

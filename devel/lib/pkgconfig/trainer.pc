@@ -1,0 +1,8 @@
+prefix=/home/ben/gripper_proj_2/devel
+
+Name: trainer
+Description: Description of trainer
+Version: 0.1.0
+Cflags: -I/home/ben/gripper_proj_2/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

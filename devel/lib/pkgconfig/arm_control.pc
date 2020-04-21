@@ -1,0 +1,8 @@
+prefix=/home/ben/gripper_proj_2/devel
+
+Name: arm_control
+Description: Description of arm_control
+Version: 0.1.0
+Cflags: -I/home/ben/gripper_proj_2/devel/include
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs message_runtime
