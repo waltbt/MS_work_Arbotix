@@ -17,7 +17,7 @@ from arm_control.msg import position
 SPIN_RATE = 20
 
 # UR3 home location
-home = [0.048+0.040+0.115,-0.066,0.093+0.038+0.143-0.048 ,0]
+home = [0.051+0.040+0.113,-0.0657,0.093+0.038+0.144-0.0491 ,0]
 
 # UR3 current position, using home position for initialization
 current_position = np.array([home[0],home[1], home[2]])
@@ -67,12 +67,12 @@ def IK_fun(pose_request):
 
     theta = [None, None, None, None, None, None]
 
-    l1 = 0.093+0.038
-    l2 = 0.143
-    l3 = 0.048
-    l4 = 0.115
-    l5 = 0.066
-    l6 = 0.048
+    l1 = 0.131 #0.093+0.038
+    l2 = 0.144
+    l3 = 0.051
+    l4 = 0.113
+    l5 = 0.0657
+    l6 = 0.0491
     l7 = 0.040
     l8 = 0 # need to set
 
@@ -86,7 +86,7 @@ def IK_fun(pose_request):
 
     theta1 = alpha + beta
 
-    theta6 = theta1 - theta_yaw_rad + np.pi/2
+    theta6 = theta1 - theta_yaw_rad #+ np.pi/2
     x_4cen = x_cen - l5*np.sin(theta1)
     y_4cen = y_cen + l5*np.cos(theta1)
     z_4cen = z_cen
@@ -105,7 +105,7 @@ def IK_fun(pose_request):
     theta3 = gamma - (phi3 + np.pi/2)
     theta4 = np.pi/2
     sigma = loc(D2, l4, D1)
-    theta5 = sigma - phi1 + np.pi/2
+    theta5 = sigma - phi1 #+ np.pi/2
 
     # print(theta1)
     # print(theta2)
@@ -115,11 +115,12 @@ def IK_fun(pose_request):
     # print(theta6)
 
     theta[0] = np.clip(int(2048 + (theta1/np.pi)*2048), 1024, 3072)
-    theta[1] = np.clip(int(2048 + (theta2/np.pi)*2048), 1024, 3072)
-    theta[2] = np.clip(int(2048 + (theta3/np.pi)*2048), 1024, 3072)
-    theta[5] = np.clip(np.rad2deg(theta4) + 10, 0, 180) #Roll
-    theta[4] = np.clip(np.rad2deg(theta5),0, 180) #pitch
-    theta[3] = np.clip(np.rad2deg(theta6) + 2,0, 180) #Yaw
+    theta[1] = np.clip(int(2020 + (theta2/np.pi)*2048), 1024, 3072)
+    theta[2] = np.clip(int(2070 + (theta3/np.pi)*2048), 1024, 3072)
+    theta[5] = 1600 #np.clip(np.rad2deg(theta4) + 10, 0, 180) #Roll
+    theta[4] = np.clip(int(1450 + (theta5/np.pi)*(2200-800)), 800, 2200) #np.clip(np.rad2deg(theta5),0, 180) #pitch
+    theta[3] = np.clip(int(1470 + (theta6/np.pi)*(2200-800)), 800, 2200) #np.clip(np.rad2deg(theta6) + 2,0, 180) #Yaw
+    # print(theta)
 
     return theta
 
@@ -146,16 +147,12 @@ def main():
     rospy.init_node('arm_control_node') #?????????????
     loop_rate = rospy.Rate(SPIN_RATE)
 
-    # Arduino
-    ## Gripper Control
-    # gripper_command = rospy.Publisher('toggle_gripper', Bool, queue_size=10)
 
     position_sub = rospy.Subscriber('arm_control/position', position, move_arm_callback)
     move_command = rospy.Publisher('move_command', command, queue_size=20)
     step_complete_sub = rospy.Subscriber('arm_control/step_complete', Bool, step_complete_callback)
     move_complete_pub = rospy.Publisher('arm_control/move_complete', Bool, queue_size=10)
-    # LED_command = rospy.Publisher('toggle_LED', Bool, queue_size=10)
-    # move_command = rospy.Publisher('move_command', command, queue_size=10)
+
 
     # Check if ROS is ready for operation
     while(rospy.is_shutdown()):
@@ -165,18 +162,15 @@ def main():
 
     while(1):
         if move_flag == True:
-            # current_position = np.array()
-            # desired_position = np.array()
-            # print("Step")
             slope_vec = desired_position - current_position
-
-            desired_position_t = current_position
+            # print(slope_vec)
+            desired_position_t = copy.copy(current_position)
 
             complete_flag = False
             step = 0.005*slope_vec/LA.norm(slope_vec)
 
             while(complete_flag == False):
-                step_complete_flag==False
+                step_complete_flag=False
                 if LA.norm(desired_position_t - desired_position)< 0.005:
                     desired_position_t = desired_position
                     current_position = copy.copy(desired_position)
@@ -195,17 +189,6 @@ def main():
             # print(move_flag)
             rospy.sleep(0.1) #Without this it just sticks
             pass
-
-
-
-
-
-
-
-
-
-
-
 
 
 
