@@ -164,27 +164,32 @@ def main():
         if move_flag == True:
             slope_vec = desired_position - current_position
             # print(slope_vec)
-            desired_position_t = copy.copy(current_position)
+            if LA.norm(slope_vec)< 0.000001: # This means we are already where we want to go (or close enough)
+                move_flag = False
+                move_complete_pub.publish(True)
+                # print("Don't move")
+            else:
+                desired_position_t = copy.copy(current_position)
 
-            complete_flag = False
-            step = 0.005*slope_vec/LA.norm(slope_vec)
+                complete_flag = False
+                step = 0.002*slope_vec/LA.norm(slope_vec) # Above check should stop divide by zero
 
-            while(complete_flag == False):
-                step_complete_flag=False
-                if LA.norm(desired_position_t - desired_position)< 0.005:
-                    desired_position_t = desired_position
-                    current_position = copy.copy(desired_position)
-                    complete_flag = True
-                    move_flag = False
-                    move_complete_pub.publish(True)
-                else:
-                    desired_position_t = desired_position_t + step
+                while(complete_flag == False):
+                    step_complete_flag=False
+                    if LA.norm(desired_position_t - desired_position)< 0.002:
+                        desired_position_t = desired_position
+                        current_position = copy.copy(desired_position)
+                        complete_flag = True
+                        move_flag = False
+                        move_complete_pub.publish(True)
+                    else:
+                        desired_position_t = desired_position_t + step
 
-                joint_angles = IK_fun(desired_position_t.tolist() + [0])
-                move_command.publish(joint_angles)
-                while(step_complete_flag==False):
-                    #rospy.sleep(0.5)
-                    pass
+                    joint_angles = IK_fun(desired_position_t.tolist() + [0])
+                    move_command.publish(joint_angles)
+                    while(step_complete_flag==False): #Wait to get callback that step is complete
+                        #rospy.sleep(0.5)
+                        pass
         else:
             # print(move_flag)
             rospy.sleep(0.1) #Without this it just sticks

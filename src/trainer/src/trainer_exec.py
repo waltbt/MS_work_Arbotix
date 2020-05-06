@@ -9,7 +9,6 @@ from std_msgs.msg import Empty # Used to call for sensor readings
 from std_msgs.msg import Bool # Used for gripper
 from std_msgs.msg import Int32 # Used to return button value
 
-#from arm_control.msg import command
 from trainer.msg import IR_sensor_data
 from trainer.msg import TOF_sensor_data
 from trainer.msg import color_sensor_data
@@ -149,7 +148,7 @@ def print_menu():
     print("8: Characterize Sensor")
     print("9: Distance test - Dead")
     print("10: Read color sensor")
-    print("11: Nothing")
+    print("11: Close Gripper")
     print("12: Nothing")
     print("13: Nothing")
     print("14: Servo test")
@@ -227,7 +226,7 @@ def train(pos_cmd, sen_IR_cmd, sen_TOF_cmd, sen_color_cmd, grp_cmd):
     load up the correct test cycle_testpoints
     call the correct test function???
     """
-    global test_pt_list
+    # global test_pt_list
     global button_data
     global sensor_TOF_reading
     global sensor_IR_reading
@@ -235,9 +234,10 @@ def train(pos_cmd, sen_IR_cmd, sen_TOF_cmd, sen_color_cmd, grp_cmd):
     global TOF_sensor
     global IR_sensor
     global color_sensor
+    global home
 
     number_of_points = raw_input("How many training points? ")
-
+    start_z = raw_input("Starting z? ")
     filename = file_menu()
     # open output file and read in test points
     with open('data/test_points/' + 'Basic_Ovoid_Medium_training.txt', 'r') as filehandle:
@@ -250,10 +250,10 @@ def train(pos_cmd, sen_IR_cmd, sen_TOF_cmd, sen_color_cmd, grp_cmd):
     tracker = 1
     for pt in test_pt_list:
         print("Moving to ", pt)
-        x_d = pt[0] + test_home[0]
-        y_d = pt[1] + test_home[1]
-        z_d = pt[2] + test_home[2]
-        z_over = z_d + 0.02
+        x_d = pt[0] + home[0]
+        y_d = pt[1] + home[1]
+        z_d = pt[2] + float(start_z)
+        z_over = float(start_z) + 0.03
 
         # Move above position
         move_arm(pos_cmd,[x_d, y_d, z_over, 0])
@@ -275,7 +275,7 @@ def train(pos_cmd, sen_IR_cmd, sen_TOF_cmd, sen_color_cmd, grp_cmd):
         if(color_sensor == True):
             presensor_color = read_color_sensor(sen_color_cmd)
         # Close gripper
-        #grp_cmd.publish(True)
+        grp_cmd.publish(True)
         rospy.sleep(0.5)
         # Gather data after closing gripper
         if(TOF_sensor == True):
@@ -405,7 +405,7 @@ Collect data for leaves and branches
 """
 This is used to collect data of how a single sensor behaves.
 """
-def char_test(pos_cmd, sen_IR_cmd):
+def char_test(pos_cmd, sen_IR_cmd, sen_TOF_cmd):
     global home
     start_z = raw_input("Starting z? ")
     data_collected = []
@@ -430,21 +430,21 @@ def char_test(pos_cmd, sen_IR_cmd):
             for x in x_list:
                 x_d = home[0] + x
                 y_d = home[1] + y
-                z_d = float(start_z) + z
+                z_d = float(start_z) + z +0.01
                 move_arm(pos_cmd,[x_d, y_d, z_d, 0])
                 rospy.sleep(0.1)
-                IR_data = read_IR_sensor(sen_IR_cmd)
-                data_collected.append([x,y,z]+[IR_data[0]])
-                # sen_IR_cmd.publish()
-                # while sensor_IR_reading[0] == -1:
-                #     pass
-                # data_collected.append([x,y,z]+[sensor_IR_reading[0]])
+                # IR_data = read_IR_sensor(sen_IR_cmd)
+                # data_collected.append([x,y,z]+[IR_data[0]])
+                TOF_data = read_TOF_sensor(sen_TOF_cmd)
+                data_collected.append([x,y,z]+[TOF_data[0],TOF_data[3]])
     #Save the data in a file
-    with open('IR_char_data.txt', 'w') as filehandle:
+    # with open('IR_char_data.txt', 'w') as filehandle:
+    #     json.dump(data_collected, filehandle)
+    with open('TOF_char_data.txt', 'w') as filehandle:
         json.dump(data_collected, filehandle)
 
 
-def distance_test(pos_cmd, sen_IR_cmd):
+def distance_test(pos_cmd, sen_IR_cmd, sen_TOF_cmd):
     global home
     start_z = raw_input("Starting z? ")
     data_collected = []
@@ -459,19 +459,16 @@ def distance_test(pos_cmd, sen_IR_cmd):
         x_d = home[0]
         y_d = home[1]
         z_d = float(start_z) + point
-
-
         move_arm(pos_cmd,[x_d, y_d, z_d, 0])
         rospy.sleep(0.2)
-        # theta_d = lab_invk(x_d, y_d , z_d , 90)
-        # move_arm(pub_cmd, loop_rate, theta_d, vel, accel)
-        IR_data = read_IR_sensor(sen_IR_cmd)
-        # sen_IR_cmd.publish()
-        # while sensor_IR_reading[0] == -1:
-        #     pass
-        data_collected.append([point]+[IR_data[0]])
+        # IR_data = read_IR_sensor(sen_IR_cmd)
+        # data_collected.append([point]+[IR_data[0]])
+        TOF_data = read_TOF_sensor(sen_TOF_cmd)
+        data_collected.append([point]+[TOF_data[0],TOF_data[3]])
     #Save the data in a file
-    with open('IR_distance_data.txt', 'w') as filehandle:
+    # with open('IR_distance_data.txt', 'w') as filehandle:
+    #     json.dump(data_collected, filehandle)
+    with open('TOF_distance_data.txt', 'w') as filehandle:
         json.dump(data_collected, filehandle)
 
 
@@ -561,13 +558,14 @@ def main():
             # leaf_test(sen_IR_command, sen_TOF_command, sen_color_command)
             pass
         elif (int(input_string) == 8):
-            char_test(position_command, sen_IR_command)
+            char_test(position_command, sen_IR_command,sen_TOF_command)
         elif (int(input_string) == 9):
-            distance_test(position_command, sen_IR_command)
+            distance_test(position_command, sen_IR_command,sen_TOF_command)
         elif (int(input_string) == 10):
             print(read_color_sensor(sen_color_command))
         elif (int(input_string) == 11):
-            pass
+            print("Closing gripper")
+            gripper_command.publish(True)
         elif (int(input_string) == 12):
             pass
         elif (int(input_string) == 13):
