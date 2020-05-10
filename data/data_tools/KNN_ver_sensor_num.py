@@ -44,7 +44,7 @@ with open(filename, 'r') as filehandle:
 
 
 for data in data_set:
-    properties.append(data[0:size_of_data])
+    properties.append(data[0:2])
     labels.append(data[-1])
 
 
