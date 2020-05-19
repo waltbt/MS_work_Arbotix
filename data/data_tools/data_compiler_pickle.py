@@ -27,84 +27,102 @@ os.chdir('/home/ben/gripper_proj_2/data/data_saved/')
 """
 IR Sensor
 """
-dump_filename = 'IR_combined_data.txt'
-# dump_filename = 'IR_test_data.txt' 
-for i in [1,2,3,4,5]:
-    filename = 'IR_data_' + str(i) + '.txt'
-    with open(filename, 'r') as filehandle:
-        data_set = pickle.load(filehandle)
-    for data in data_set:
-        if data.button == 0:
-            berry_set.append(data.IR[0:3] + ['success!'])
-        else:
-            berry_set.append(data.IR[0:3] + ['Bad Grip'])
+# dump_filename = 'IR_combined_data.txt'
+# dump_filename = 'IR_test_data.txt'
+# dump_filename = 'IR_combined_leaf_data.txt'
+# dump_filename = 'IR_final_test_data.txt'
+# dump_filename = 'IR_final_test_leaf_data.txt'
+# dump_filename = 'IR_test_leaf_data.txt'
+# for i in [6]:#[1,2,3,4,5]:
+#     filename = 'IR_data_' + str(i) + '.txt'
+#     with open(filename, 'r') as filehandle:
+#         data_set = pickle.load(filehandle)
+#     for data in data_set:
+#         if data.button == 0:
+#             berry_set.append(data.IR[0:3] + ['Good Grip'])
+#         else:
+#             berry_set.append(data.IR[0:3] + ['Bad Grip'])
 """
-TOF Sensor
+TOF Sensor - Don't use lux
 """
 # dump_filename = 'TOF_combined_data.txt'
 # dump_filename = 'TOF_test_data.txt'
-# dump_filename = 'TOF_NL_combined_data.txt' # NO lux
+# dump_filename = 'TOF_final_test_data.txt'
+# dump_filename = 'TOF_combined_leaf_data.txt'
+# dump_filename = 'TOF_test_leaf_data.txt'
+# dump_filename = 'TOF_final_test_leaf_data.txt'
 # for i in [1,2,3,4,5]:
 #     filename = 'TOF_data_' + str(i) + '.txt'
 #     with open(filename, 'r') as filehandle:
 #         data_set = pickle.load(filehandle)
 #     for data in data_set:
 #         if data.button == 0:
-#             # berry_set.append(data.TOF[0:6] + ['success!'])
-#             berry_set.append(data.TOF[0:3] + ['success!']) # No lux
+#             berry_set.append(data.TOF[0:3] + ['Good Grip']) # No lux
 #         else:
-#             # berry_set.append(data.TOF[0:6] + ['Bad Grip'])
 #             berry_set.append(data.TOF[0:3] + ['Bad Grip']) #No lux
 
 """
-IR and Color Sensor - Need think about what data I want to use here.
+IR and Color Sensor -Just RGB
 """
-# dump_filename = 'IR_Color_k_combined_data.txt'
-# for i in [1,2,3,4,5]:
+# # dump_filename = 'IR_Color_k_combined_data.txt'
+# dump_filename = 'IR_Color_rgb_test_data.txt'
+# for i in [6]: #[1,2,3,4,5]:
 #     filename = 'IR_Color_data_' + str(i) + '.txt'
 #     with open(filename, 'r') as filehandle:
 #         data_set = pickle.load(filehandle)
 #     for data in data_set:
 #         if data.button == 0:
-#             berry_set.append(data.IR[0:2] + [data.color[4]] + ['success!'])
+#             berry_set.append(data.IR[0:2] + data.color[0:3] + ['Good Grip'])
 #         else:
-#             berry_set.append(data.IR[0:2] + [data.color[4]] + ['Bad Grip'])
+#             berry_set.append(data.IR[0:2] + data.color[0:3] + ['Bad Grip'])
 
 """
-TOF and Color Sensor - Need think about what data I want to use here.
+TOF and Color Sensor - No lux and just RGB.
 """
-# # dump_filename = 'TOF_Color_rgb_combined_data.txt'
-# # dump_filename = 'TOF_Color_k_combined_data.txt'
+# dump_filename = 'TOF_Color_rgb_combined_data.txt'
+dump_filename = 'TOF_Color_rgb_test_data.txt'
+# dump_filename = 'TOF_Color_rgb_final_test_data.txt'
+# dump_filename = 'TOF_Color_k_combined_data.txt'
 # dump_filename = 'TOF_Color_all_combined_data.txt'
-# for i in [1,2,3,4,5]:
-#     filename = 'TOF_Color_data_' + str(i) + '.txt'
-#     with open(filename, 'r') as filehandle:
-#         data_set = pickle.load(filehandle)
-#     for data in data_set:
-#         if data.button == 0:
-#             # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['success!'])
-#             # berry_set.append(data.TOF[0:2] + data.color[0:3] + ['success!']) # rgb
-#             # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['success!']) # k
-#             berry_set.append(data.TOF[0:2] + data.color[0:6] + ['success!']) # all
-#
-#         else:
-#             # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['Bad Grip'])
-#             # berry_set.append(data.TOF[0:2] + data.color[0:3] + ['Bad Grip']) # rgb
-#             # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['Bad Grip']) # k
-#             berry_set.append(data.TOF[0:2] + data.color[0:6] + ['Bad Grip']) # all
+for i in [6]: #[1,2,3,4,5]:
+    filename = 'TOF_Color_data_' + str(i) + '.txt'
+    with open(filename, 'r') as filehandle:
+        data_set = pickle.load(filehandle)
+    for data in data_set:
+        if data.button == 0:
+            # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['Good Grip'])
+            berry_set.append(data.TOF[0:2] + data.color[0:3] + ['Good Grip']) # rgb
+            # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['Good Grip']) # k
+            # berry_set.append(data.TOF[0:2] + data.color[0:6] + ['Good Grip']) # all
+
+        else:
+            # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['Bad Grip'])
+            berry_set.append(data.TOF[0:2] + data.color[0:3] + ['Bad Grip']) # rgb
+            # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['Bad Grip']) # k
+            # berry_set.append(data.TOF[0:2] + data.color[0:6] + ['Bad Grip']) # all
 
 
-# leaf_set =[]
-# #filename = 'Tabbed_leaf.txt'
-# filename = 'Basic_leaf.txt'
+
+
+# filename = 'IR_leaf_final_test.txt'
+# filename = 'IR_leaf.txt'
 # with open(filename, 'r') as filehandle:
-#     leaf_data = pickle.load(filehandle)
-#
-# for data in leaf_data:
-#     leaf_set.append(data.IR[0:3]+ ['leaf'])
+#     data_set = pickle.load(filehandle)
+# for data in data_set:
+#     berry_set.append(data.IR[0:3] + ['Leaf'])
 
-comb_data = berry_set #+ leaf_set
+
+# filename = 'TOF_leaf.txt'
+# # filename = 'TOF_leaf_test.txt'
+# # filename = 'TOF_leaf_final_test.txt'
+# with open(filename, 'r') as filehandle:
+#     data_set = pickle.load(filehandle)
+# for data in data_set:
+#     # berry_set.append(data.IR[0:3] + ['Leaf'])
+#     berry_set.append(data.TOF[0:3] + ['Leaf']) # No lux
+
+# comb_data = berry_set
 
 os.chdir('/home/ben/gripper_proj_2/data/combined_data/')
 with open(dump_filename, 'w') as filehandle:
-        json.dump(comb_data, filehandle)
+        json.dump(berry_set, filehandle)

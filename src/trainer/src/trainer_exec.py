@@ -117,19 +117,9 @@ def move_complete_callback(msg):
 
 def move_arm(pos_cmd, pos):
     global move_complete
-
-    # position_t = position()
-    # position_t.point[0]=pos[0]
-    # position_t.point[1]=pos[1]
-    # position_t.point[2]=pos[2]
-    # position_t.point[3]=pos[3]
     move_complete = False
-    # print("Here in moving arm")
     pos_cmd.publish(pos)
-    # print("Here in moving arm2")
     while(move_complete==False):
-        # print("waiting")
-        # rospy.sleep(.5)
         pass
 """
 Main Menu
@@ -139,21 +129,20 @@ def print_menu():
     print("Menu: ")
     print("0: Exit Program")
     print("1: Train")
-    print("2: Open Gripper")
-    print("3: Home the arm")
-    print("4: Move arm out of the way")
+    print("2: Find z-height")
+    print("3: Open Gripper")
+    print("4: Close Gripper")
     print("5: Read TOF sensor")
     print("6: Read IR Sensor")
-    print("7: Test Leafs - Dead")
-    print("8: Characterize Sensor")
-    print("9: Distance test - Dead")
-    print("10: Read color sensor")
-    print("11: Close Gripper")
-    print("12: Nothing")
-    print("13: Nothing")
-    print("14: Servo test")
-    print("15: Move to point")
-    print("16: Find z-height")
+    print("7: Read color sensor")
+    print("8: Training - Leafs")
+    print("9: Characterize Sensor")
+    print("10: Distance test - Dead")
+    print("11: Home the arm")
+    print("12: Move arm out of the way")
+    # print("13: Servo test")
+    # print("14: Move to point")
+
 
 
 
@@ -324,7 +313,7 @@ def read_TOF_sensor(sen_cmd):
         pass
     data = copy.copy(sensor_TOF_reading)
     sensor_TOF_reading = [-1, -1, -1, -1.0, -1.0, -1.0]
-    # print("TOF Read")
+    print(data)
     return data
 
 """
@@ -360,46 +349,62 @@ def read_color_sensor(sen_cmd):
 """
 Collect data for leaves and branches
 """
-# def leaf_test(sen_IR_cmd, sen_TOF_cmd, sen_color_cmd):
-#     global button_data
-#     global sensor_IR_reading
-#     tracker = 0
-#     data_collected = []
-#     # Create a file name
-#     filename = file_menu()
-#     # Read number of cycles
-#     num_cycles = raw_input("How many cycles?")
-#     for a in range(int(num_cycles)):
-#         # Press button to advance
-#         print("Press button to take reading.")
-#         while button_data == -1:
-#             pass
-#         # Read the sensors
-#         sensor_TOF = [-1, -1, -1, -1.0, -1.0, -1.0]
-#         sensor_IR = [-1,-1,-1]
-#         sensor_color = [-1, -1, -1, -1, -1, -1.0]
-#
-#         if(TOF_sensor == True):
-#             sensor_TOF = read_TOF_sensor(sen_TOF_cmd)
-#         if(IR_sensor == True):
-#             sensor_IR = read_IR_sensor(sen_IR_cmd)
-#         if(color_sensor == True):
-#             sensor_color = read_color_sensor(sen_color_cmd)
-#
-#         rospy.sleep(0.5)
-#
-#         print(tracker)
-#         tracker += 1
-#         # data_collected.append(sensor)
-#         #data_collected.append(sensor_data_struct(pt, sensor_IR, sensor_TOF, sensor_color, "leaf"))
-#         data_collected.append(sensor_data_struct(pt, sensor_IR, sensor_TOF, sensor_color, "leaf"))
-#
-#
-#         button_data = -1
-#
-#     with open('data/' + filename + '_leaf.txt', 'w') as filehandle:
-#         #json.dump(data_collected, filehandle)
-#         pickle.dump(data_collected, filehandle)
+def leaf_test(pos_cmd, sen_IR_cmd, sen_TOF_cmd, sen_color_cmd):
+    global button_data
+    global sensor_TOF_reading
+    global sensor_IR_reading
+    global sensor_color_reading
+    global TOF_sensor
+    global IR_sensor
+    global color_sensor
+    global home
+
+    close_sensor_TOF = [-1, -1, -1, -1.0, -1.0, -1.0]
+    close_sensor_IR = [-1,-1,-1]
+    close_sensor_color = [-1, -1, -1, -1, -1, -1.0]
+    pt = [-1,-1,-1]
+    tracker = 0
+    data_collected = []
+    print("Moving to home")
+
+    # Move above position
+    move_arm(pos_cmd, home)
+    # Create a file name
+    filename = file_menu()
+    # Read number of cycles
+    num_cycles = 20
+    for a in range(num_cycles):
+        # Press button to advance
+        print("Press button to take reading.")
+        while button_data == -1:
+            pass
+        # Read the sensors
+        presensor_TOF = [-1, -1, -1, -1.0, -1.0, -1.0]
+        presensor_IR = [-1,-1,-1]
+        presensor_color = [-1, -1, -1, -1, -1, -1.0]
+
+        if(TOF_sensor == True):
+            presensor_TOF = read_TOF_sensor(sen_TOF_cmd)
+        if(IR_sensor == True):
+            presensor_IR = read_IR_sensor(sen_IR_cmd)
+        if(color_sensor == True):
+            presensor_color = read_color_sensor(sen_color_cmd)
+
+        rospy.sleep(0.2)
+
+        print(tracker)
+        tracker += 1
+        # data_collected.append(sensor)
+        #data_collected.append(sensor_data_struct(pt, sensor_IR, sensor_TOF, sensor_color, "leaf"))
+        # data_collected.append(sensor_data_struct(pt, sensor_IR, sensor_TOF, sensor_color, "leaf"))
+        data_collected.append(sensor_data_struct(pt, presensor_IR + close_sensor_IR, presensor_TOF + close_sensor_TOF, presensor_color + close_sensor_color, "plant"))
+        button_data = -1
+
+    # with open('data/' + filename + '_leaf.txt', 'w') as filehandle:
+    # with open('data/' + filename + '_leaf_test.txt', 'w') as filehandle:
+    with open('data/' + filename + '_leaf_final_test.txt', 'w') as filehandle:
+        #json.dump(data_collected, filehandle)
+        pickle.dump(data_collected, filehandle)
 
 
 """
@@ -540,14 +545,13 @@ def main():
             print("Training...")
             train(position_command, sen_IR_command, sen_TOF_command, sen_color_command, gripper_command)
         elif (int(input_string) == 2):
+            find_z(position_command)
+        elif (int(input_string) == 3):
             print("Opening gripper")
             gripper_command.publish(False)
-        elif (int(input_string) == 3):
-            print("Moving arm to home")
-            move_arm(position_command,home)
         elif (int(input_string) == 4):
-            print("Moving arm out of the way")
-            move_arm(position_command,away)
+            print("Closing gripper")
+            gripper_command.publish(True)
         elif (int(input_string) == 5):
             print("Read TOF")
             print(read_TOF_sensor(sen_TOF_command))
@@ -555,19 +559,20 @@ def main():
             print("Read IR")
             print(read_IR_sensor(sen_IR_command))
         elif (int(input_string) == 7):
-            # leaf_test(sen_IR_command, sen_TOF_command, sen_color_command)
-            pass
-        elif (int(input_string) == 8):
-            char_test(position_command, sen_IR_command,sen_TOF_command)
-        elif (int(input_string) == 9):
-            distance_test(position_command, sen_IR_command,sen_TOF_command)
-        elif (int(input_string) == 10):
+            print("Read Color Sensor")
             print(read_color_sensor(sen_color_command))
+        elif (int(input_string) == 8):
+            leaf_test(position_command, sen_IR_command, sen_TOF_command, sen_color_command)
+        elif (int(input_string) == 9):
+            char_test(position_command, sen_IR_command,sen_TOF_command)
+        elif (int(input_string) == 10):
+            distance_test(position_command, sen_IR_command,sen_TOF_command)
         elif (int(input_string) == 11):
-            print("Closing gripper")
-            gripper_command.publish(True)
+            print("Moving arm to home")
+            move_arm(position_command,home)
         elif (int(input_string) == 12):
-            pass
+            print("Moving arm out of the way")
+            move_arm(position_command,away)
         elif (int(input_string) == 13):
             pass
         elif (int(input_string) == 14):
@@ -589,8 +594,7 @@ def main():
             # print(test_input_pose)
             # pose_command.publish(test_input_pose)
             pass
-        elif (int(input_string) == 16):
-            find_z(position_command)
+
         elif (int(input_string) == 0):
             break
         else:
