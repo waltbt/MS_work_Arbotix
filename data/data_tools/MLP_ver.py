@@ -29,15 +29,17 @@ Import datasets
 """
 IR
 """
-filename = 'IR_combined_data.txt'
-filename_test = 'IR_test_data.txt'
-size_of_data = 3
+# filename = 'IR_combined_data.txt'
+# filename_test = 'IR_test_data.txt'
+# size_of_data = 3
+# size_array = [(3,1)]
 """
 TOF
 """
 # filename = 'TOF_combined_data.txt'
 # filename_test = 'TOF_test_data.txt'
 # size_of_data = 3
+# size_array = [(2,),(3,2),(2,2)]
 
 """
 IR Color
@@ -45,12 +47,24 @@ IR Color
 # filename = 'IR_Color_rgb_combined_data.txt'
 # filename_test = 'IR_Color_rgb_test_data.txt'
 # size_of_data = 5
+# size_array = [(2,2),(2,1)]
+
 """
 TOF Color
 """
 # filename = 'TOF_Color_rgb_combined_data.txt'
 # filename_test = 'TOF_Color_rgb_test_data.txt'
 # size_of_data = 5
+# size_array = [(3,3)]
+
+"""
+IR TOF Color
+"""
+
+filename = 'IR_TOF_Color_rgb_combined_data.txt'
+filename_test = 'IR_TOF_Color_rgb_test_data.txt'
+size_of_data = 5
+size_array = [(1,)]
 
 with open(filename, 'r') as filehandle:
     data_set = json.load(filehandle)
@@ -131,34 +145,36 @@ print(bad_prec_str)
 
 activation = ['identity', 'logistic', 'tanh', 'relu']
 solver = ['lbfgs', 'sgd', 'adam']
-# for i in activation:
-#     print(i)
-#     mlp = MLPClassifier(hidden_layer_sizes=(3,1), max_iter=1000, alpha=1e-4,
-#                         solver='sgd', activation=i, verbose=False, random_state=1,
-#                         learning_rate_init=.1)
-#
-#     mlp.fit(properties_train, labels_train)
-#     print("Training set score: %f" % mlp.score(properties_train, labels_train))
-#     print("Test set score: %f" % mlp.score(properties_test, labels_test))
-#
-#     labels_pred = mlp.predict(properties_test)
-#
-#
-#     print(confusion_matrix(labels_test, labels_pred))
-#     print(classification_report(labels_test, labels_pred))
-#
-# for i in solver:
-#     print(i)
-#     mlp = MLPClassifier(hidden_layer_sizes=(3,1), max_iter=1000, alpha=1e-4,
-#                         solver=i, verbose=False, random_state=1,
-#                         learning_rate_init=.1)
-#
-#     mlp.fit(properties_train, labels_train)
-#     print("Training set score: %f" % mlp.score(properties_train, labels_train))
-#     print("Test set score: %f" % mlp.score(properties_test, labels_test))
-#
-#     labels_pred = mlp.predict(properties_test)
-#
-#
-#     print(confusion_matrix(labels_test, labels_pred))
-#     print(classification_report(labels_test, labels_pred))
+for a in size_array:
+    print(a)
+    for i in activation:
+        print(i)
+        mlp = MLPClassifier(hidden_layer_sizes=a, max_iter=1000, alpha=1e-4,
+                            solver='sgd', activation=i, verbose=False, random_state=1,
+                            learning_rate_init=.1)
+
+        mlp.fit(properties_train, labels_train)
+        print("Training set score: %f" % mlp.score(properties_train, labels_train))
+        print("Test set score: %f" % mlp.score(properties_test, labels_test))
+
+        labels_pred = mlp.predict(properties_test)
+
+
+        print(confusion_matrix(labels_test, labels_pred))
+        print(classification_report(labels_test, labels_pred))
+
+    for i in solver:
+        print(i)
+        mlp = MLPClassifier(hidden_layer_sizes=a, max_iter=1000, alpha=1e-4,
+                            solver=i, verbose=False, random_state=1,
+                            learning_rate_init=.1)
+
+        mlp.fit(properties_train, labels_train)
+        print("Training set score: %f" % mlp.score(properties_train, labels_train))
+        print("Test set score: %f" % mlp.score(properties_test, labels_test))
+
+        labels_pred = mlp.predict(properties_test)
+
+
+        print(confusion_matrix(labels_test, labels_pred))
+        print(classification_report(labels_test, labels_pred))

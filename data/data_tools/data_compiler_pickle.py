@@ -79,30 +79,45 @@ IR and Color Sensor -Just RGB
 """
 TOF and Color Sensor - No lux and just RGB.
 """
-# dump_filename = 'TOF_Color_rgb_combined_data.txt'
-dump_filename = 'TOF_Color_rgb_test_data.txt'
-# dump_filename = 'TOF_Color_rgb_final_test_data.txt'
-# dump_filename = 'TOF_Color_k_combined_data.txt'
-# dump_filename = 'TOF_Color_all_combined_data.txt'
-for i in [6]: #[1,2,3,4,5]:
-    filename = 'TOF_Color_data_' + str(i) + '.txt'
+# # dump_filename = 'TOF_Color_rgb_combined_data.txt'
+# dump_filename = 'TOF_Color_rgb_test_data.txt'
+# # dump_filename = 'TOF_Color_rgb_final_test_data.txt'
+# # dump_filename = 'TOF_Color_k_combined_data.txt'
+# # dump_filename = 'TOF_Color_all_combined_data.txt'
+# for i in [6]: #[1,2,3,4,5]:
+#     filename = 'TOF_Color_data_' + str(i) + '.txt'
+#     with open(filename, 'r') as filehandle:
+#         data_set = pickle.load(filehandle)
+#     for data in data_set:
+#         if data.button == 0:
+#             # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['Good Grip'])
+#             berry_set.append(data.TOF[0:2] + data.color[0:3] + ['Good Grip']) # rgb
+#             # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['Good Grip']) # k
+#             # berry_set.append(data.TOF[0:2] + data.color[0:6] + ['Good Grip']) # all
+#
+#         else:
+#             # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['Bad Grip'])
+#             berry_set.append(data.TOF[0:2] + data.color[0:3] + ['Bad Grip']) # rgb
+#             # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['Bad Grip']) # k
+#             # berry_set.append(data.TOF[0:2] + data.color[0:6] + ['Bad Grip']) # all
+
+
+"""
+IR and Color Sensor -Just RGB
+"""
+
+dump_filename = 'IR_TOF_Color_rgb_combined_data.txt'
+# dump_filename = 'IR_TOF_Color_rgb_test_data.txt'
+# dump_filename = 'IR_TOF_Color_rgb_final_test_data.txt'
+for i in [1,2,3,4,5]:
+    filename = 'IR_TOF_Color_data_' + str(i) + '.txt'
     with open(filename, 'r') as filehandle:
         data_set = pickle.load(filehandle)
     for data in data_set:
         if data.button == 0:
-            # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['Good Grip'])
-            berry_set.append(data.TOF[0:2] + data.color[0:3] + ['Good Grip']) # rgb
-            # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['Good Grip']) # k
-            # berry_set.append(data.TOF[0:2] + data.color[0:6] + ['Good Grip']) # all
-
+            berry_set.append(data.IR[0:1] + data.TOF[0:1] + data.color[0:3] + ['Good Grip'])
         else:
-            # berry_set.append(data.TOF[0:2] + data.TOF[3:5] + data.color[0:3] + ['Bad Grip'])
-            berry_set.append(data.TOF[0:2] + data.color[0:3] + ['Bad Grip']) # rgb
-            # berry_set.append(data.TOF[0:2] + [data.color[4]] + ['Bad Grip']) # k
-            # berry_set.append(data.TOF[0:2] + data.color[0:6] + ['Bad Grip']) # all
-
-
-
+            berry_set.append(data.IR[0:1] + data.TOF[0:1] + data.color[0:3] + ['Bad Grip'])
 
 # filename = 'IR_leaf_final_test.txt'
 # filename = 'IR_leaf.txt'

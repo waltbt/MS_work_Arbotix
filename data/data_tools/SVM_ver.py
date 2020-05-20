@@ -33,15 +33,24 @@ TOF
 """
 IR Color
 """
-filename = 'IR_Color_rgb_combined_data.txt'
-filename_test = 'IR_Color_rgb_test_data.txt'
-size_of_data = 5
+# filename = 'IR_Color_rgb_combined_data.txt'
+# filename_test = 'IR_Color_rgb_test_data.txt'
+# size_of_data = 5
 """
 TOF Color
 """
 # filename = 'TOF_Color_rgb_combined_data.txt'
 # filename_test = 'TOF_Color_rgb_test_data.txt'
 # size_of_data = 5
+
+"""
+IR TOF Color
+"""
+
+filename = 'IR_TOF_Color_rgb_combined_data.txt'
+filename_test = 'IR_TOF_Color_rgb_test_data.txt'
+size_of_data = 5
+
 
 with open(filename, 'r') as filehandle:
     data_set = json.load(filehandle)

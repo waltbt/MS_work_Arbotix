@@ -84,12 +84,31 @@ TOF Color
 # title_name = 'TOF Color Accuracy of Prediction and the depth (DT/Entropy)'
 # save_file = 'tof_color_dt_entropy_depth_value.png'
 #
-filename = 'TOF_Color_rgb_combined_data.txt'
-filename_test = 'TOF_Color_rgb_test_data.txt'
+# filename = 'TOF_Color_rgb_combined_data.txt'
+# filename_test = 'TOF_Color_rgb_test_data.txt'
+# size_of_data = 5
+# crit = 'gini'
+# title_name = 'TOF Color Accuracy of Prediction and the depth (DT/Gini)'
+# save_file = 'tof_color_dt_gini_depth_value.png'
+
+"""
+IR TOF Color
+"""
+
+filename = 'IR_TOF_Color_rgb_combined_data.txt'
+filename_test = 'IR_TOF_Color_rgb_test_data.txt'
 size_of_data = 5
-crit = 'gini'
-title_name = 'TOF Color Accuracy of Prediction and the depth (DT/Gini)'
-save_file = 'tof_color_dt_gini_depth_value.png'
+crit = 'entropy'
+title_name = 'IR TOF Color Accuracy of Prediction and the depth (DT/Entropy)'
+save_file = 'ir_tof_color_dt_entropy_depth_value.png'
+
+
+# filename = 'IR_TOF_Color_rgb_combined_data.txt'
+# filename_test = 'IR_TOF_Color_rgb_test_data.txt'
+# size_of_data = 5
+# crit = 'gini'
+# title_name = 'IR TOF Color Accuracy of Prediction and the depth (DT/Gini)'
+# save_file = 'ir_tof_color_dt_gini_depth_value.png'
 
 
 with open(filename, 'r') as filehandle:
