@@ -32,14 +32,16 @@ IR
 # filename = 'IR_combined_data.txt'
 # filename_test = 'IR_test_data.txt'
 # size_of_data = 3
+# test_set = [(3,),(2,),(1,),(3,3),(3,2),(3,1),(2,2),(2,1),(1,1)]
 # size_array = [(3,1)]
 """
 TOF
 """
-# filename = 'TOF_combined_data.txt'
-# filename_test = 'TOF_test_data.txt'
-# size_of_data = 3
-# size_array = [(2,),(3,2),(2,2)]
+filename = 'TOF_combined_data.txt'
+filename_test = 'TOF_test_data.txt'
+size_of_data = 3
+test_set = [(3,),(2,),(1,),(3,3),(3,2),(3,1),(2,2),(2,1),(1,1)]
+size_array = [(3,),(1,),(2,2)]
 
 """
 IR Color
@@ -47,7 +49,8 @@ IR Color
 # filename = 'IR_Color_rgb_combined_data.txt'
 # filename_test = 'IR_Color_rgb_test_data.txt'
 # size_of_data = 5
-# size_array = [(2,2),(2,1)]
+# test_set = [(5,),(4,),(3,),(2,),(1,),(5,5),(5,4),(5,3),(5,2),(5,1),(4,4),(4,3),(4,2),(4,1),(3,3),(3,2),(3,1),(2,2),(2,1),(1,1)]
+# size_array = [(4,2)]
 
 """
 TOF Color
@@ -55,16 +58,18 @@ TOF Color
 # filename = 'TOF_Color_rgb_combined_data.txt'
 # filename_test = 'TOF_Color_rgb_test_data.txt'
 # size_of_data = 5
-# size_array = [(3,3)]
+# test_set = [(5,),(4,),(3,),(2,),(1,),(5,5),(5,4),(5,3),(5,2),(5,1),(4,4),(4,3),(4,2),(4,1),(3,3),(3,2),(3,1),(2,2),(2,1),(1,1)]
+# size_array = [(5,3),(4,3)]
 
 """
 IR TOF Color
 """
 
-filename = 'IR_TOF_Color_rgb_combined_data.txt'
-filename_test = 'IR_TOF_Color_rgb_test_data.txt'
-size_of_data = 5
-size_array = [(1,)]
+# filename = 'IR_TOF_Color_rgb_combined_data.txt'
+# filename_test = 'IR_TOF_Color_rgb_test_data.txt'
+# size_of_data = 5
+# test_set = [(5,),(4,),(3,),(2,),(1,),(5,5),(5,4),(5,3),(5,2),(5,1),(4,4),(4,3),(4,2),(4,1),(3,3),(3,2),(3,1),(2,2),(2,1),(1,1)]
+# size_array = [(1,)]
 
 with open(filename, 'r') as filehandle:
     data_set = json.load(filehandle)
@@ -108,7 +113,7 @@ bad_str_1 = ''
 bad_str_2 = ''
 bad_prec_str = ''
 good_prec_str = ''
-for i in [(3,),(2,),(1,),(3,3),(3,2),(3,1),(2,2),(2,1),(1,1)]:
+for i in test_set:
     print(i)
     mlp = MLPClassifier(hidden_layer_sizes=i, max_iter=1000, alpha=1e-4,
                         solver='sgd', verbose=False, random_state=1,

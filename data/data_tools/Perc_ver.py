@@ -25,9 +25,10 @@ os.chdir('/home/ben/gripper_proj_2/data/combined_data/')
 """
 IR
 """
-filename = 'IR_combined_data.txt'
-filename_test = 'IR_test_data.txt'
-size_of_data = 3
+# filename = 'IR_combined_data.txt'
+# filename_test = 'IR_test_data.txt'
+# filename_test = 'IR_final_test_data.txt'
+# size_of_data = 3
 # title_name = 'IR Accuracy of Prediction and the k-value'
 # save_file = 'ir_perc.png'
 
@@ -37,9 +38,10 @@ size_of_data = 3
 """
 TOF
 """
-# filename = 'TOF_combined_data.txt'
+filename = 'TOF_combined_data.txt'
 # filename_test = 'TOF_test_data.txt'
-# size_of_data = 3
+filename_test = 'TOF_final_test_data.txt'
+size_of_data = 3
 # title_name = 'TOF - Accuracy of Prediction and the k-value'
 # save_file = 'tof_knn_k_value.png'
 

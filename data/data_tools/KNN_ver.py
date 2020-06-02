@@ -82,22 +82,22 @@ IR Color
 TOF Color
 """
 
-# filename = 'TOF_Color_rgb_combined_data.txt'
-# filename_test = 'TOF_Color_rgb_test_data.txt'
-# size_of_data = 5
-# title_name = 'TOF - Color - rgb - Accuracy of Prediction and the k-value'
-# save_file = 'tof_color_rgb_knn_k_value.png'
+filename = 'TOF_Color_rgb_combined_data.txt'
+filename_test = 'TOF_Color_rgb_test_data.txt'
+size_of_data = 5
+title_name = 'TOF - Color - rgb - Accuracy of Prediction and the k-value'
+save_file = 'tof_color_rgb_knn_k_value.png'
 
 
 """
 IR TOF Color
 """
-
-filename = 'IR_TOF_Color_rgb_combined_data.txt'
-filename_test = 'IR_TOF_Color_rgb_test_data.txt'
-size_of_data = 5
-title_name = 'IR - TOF - Color - rgb - Accuracy of Prediction and the k-value'
-save_file = 'ir_tof_color_rgb_knn_k_value.png'
+#
+# filename = 'IR_TOF_Color_rgb_combined_data.txt'
+# filename_test = 'IR_TOF_Color_rgb_test_data.txt'
+# size_of_data = 5
+# title_name = 'IR - TOF - Color - rgb - Accuracy of Prediction and the k-value'
+# save_file = 'ir_tof_color_rgb_knn_k_value.png'
 
 
 with open(filename, 'r') as filehandle:
@@ -176,6 +176,6 @@ plt.legend(loc='lower right')
 # plt.legend(loc='center right')
 
 os.chdir('/home/ben/gripper_proj_2/data/plots/')
-plt.savefig(save_file)
+# plt.savefig(save_file)
 
 plt.show()

@@ -23,9 +23,9 @@ os.chdir('/home/ben/gripper_proj_2/data/combined_data/')
 """
 IR
 """
-filename = 'IR_combined_data.txt'
-filename_test = 'IR_test_data.txt'
-size_of_data = 3
+# filename = 'IR_combined_data.txt'
+# filename_test = 'IR_test_data.txt'
+# size_of_data = 3
 # title_name = 'IR Accuracy of Prediction and the k-value'
 # save_file = 'ir_perc.png'
 
@@ -36,7 +36,7 @@ size_of_data = 3
 TOF
 """
 # filename = 'TOF_combined_data.txt'
-# filename_test = 'TOF_test_data.txt'
+# filename_test = 'TOF_final_test_data.txt'
 # size_of_data = 3
 # title_name = 'TOF - Accuracy of Prediction and the k-value'
 # save_file = 'tof_knn_k_value.png'
@@ -76,8 +76,9 @@ IR Color
 # filename = 'IR_Color_k_combined_data.txt'
 # size_of_data = 3
 
-# filename = 'TOF_Color_rgb_combined_data.txt'
-# size_of_data = 5
+filename = 'TOF_Color_rgb_combined_data.txt'
+filename_test = 'TOF_Color_rgb_final_test_data.txt'
+size_of_data = 5
 
 
 # with open(filename, 'r') as filehandle:

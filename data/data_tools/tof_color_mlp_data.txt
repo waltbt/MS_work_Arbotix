@@ -1,0 +1,484 @@
+(5,)
+Training set score: 0.838000
+Test set score: 0.770000
+[[20 23]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.47      0.63        43
+   Good Grip       0.71      1.00      0.83        57
+
+   micro avg       0.77      0.77      0.77       100
+   macro avg       0.86      0.73      0.73       100
+weighted avg       0.84      0.77      0.75       100
+
+(4,)
+Training set score: 0.866000
+Test set score: 0.830000
+[[26 17]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.60      0.75        43
+   Good Grip       0.77      1.00      0.87        57
+
+   micro avg       0.83      0.83      0.83       100
+   macro avg       0.89      0.80      0.81       100
+weighted avg       0.87      0.83      0.82       100
+
+(3,)
+Training set score: 0.848000
+Test set score: 0.840000
+[[32 11]
+ [ 5 52]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.86      0.74      0.80        43
+   Good Grip       0.83      0.91      0.87        57
+
+   micro avg       0.84      0.84      0.84       100
+   macro avg       0.85      0.83      0.83       100
+weighted avg       0.84      0.84      0.84       100
+
+(2,)
+Training set score: 0.836000
+Test set score: 0.860000
+[[29 14]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.67      0.81        43
+   Good Grip       0.80      1.00      0.89        57
+
+   micro avg       0.86      0.86      0.86       100
+   macro avg       0.90      0.84      0.85       100
+weighted avg       0.89      0.86      0.85       100
+
+(1,)
+Training set score: 0.830000
+Test set score: 0.850000
+[[37  6]
+ [ 9 48]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.80      0.86      0.83        43
+   Good Grip       0.89      0.84      0.86        57
+
+   micro avg       0.85      0.85      0.85       100
+   macro avg       0.85      0.85      0.85       100
+weighted avg       0.85      0.85      0.85       100
+
+(5, 5)
+Training set score: 0.838000
+Test set score: 0.820000
+[[25 18]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.58      0.74        43
+   Good Grip       0.76      1.00      0.86        57
+
+   micro avg       0.82      0.82      0.82       100
+   macro avg       0.88      0.79      0.80       100
+weighted avg       0.86      0.82      0.81       100
+
+(5, 4)
+Training set score: 0.862000
+Test set score: 0.840000
+[[29 14]
+ [ 2 55]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.94      0.67      0.78        43
+   Good Grip       0.80      0.96      0.87        57
+
+   micro avg       0.84      0.84      0.84       100
+   macro avg       0.87      0.82      0.83       100
+weighted avg       0.86      0.84      0.83       100
+
+(5, 3)
+Training set score: 0.860000
+Test set score: 0.870000
+[[38  5]
+ [ 8 49]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.83      0.88      0.85        43
+   Good Grip       0.91      0.86      0.88        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.87      0.87      0.87       100
+
+(5, 2)
+Training set score: 0.854000
+Test set score: 0.820000
+[[25 18]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.58      0.74        43
+   Good Grip       0.76      1.00      0.86        57
+
+   micro avg       0.82      0.82      0.82       100
+   macro avg       0.88      0.79      0.80       100
+weighted avg       0.86      0.82      0.81       100
+
+(5, 1)
+Training set score: 0.842000
+Test set score: 0.830000
+[[29 14]
+ [ 3 54]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.91      0.67      0.77        43
+   Good Grip       0.79      0.95      0.86        57
+
+   micro avg       0.83      0.83      0.83       100
+   macro avg       0.85      0.81      0.82       100
+weighted avg       0.84      0.83      0.83       100
+
+(4, 4)
+Training set score: 0.838000
+Test set score: 0.850000
+[[29 14]
+ [ 1 56]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.97      0.67      0.79        43
+   Good Grip       0.80      0.98      0.88        57
+
+   micro avg       0.85      0.85      0.85       100
+   macro avg       0.88      0.83      0.84       100
+weighted avg       0.87      0.85      0.84       100
+
+(4, 3)
+Training set score: 0.850000
+Test set score: 0.870000
+[[38  5]
+ [ 8 49]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.83      0.88      0.85        43
+   Good Grip       0.91      0.86      0.88        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.87      0.87      0.87       100
+
+(4, 2)
+Training set score: 0.838000
+Test set score: 0.840000
+[[27 16]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.63      0.77        43
+   Good Grip       0.78      1.00      0.88        57
+
+   micro avg       0.84      0.84      0.84       100
+   macro avg       0.89      0.81      0.82       100
+weighted avg       0.88      0.84      0.83       100
+
+(4, 1)
+Training set score: 0.862000
+Test set score: 0.830000
+[[26 17]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.60      0.75        43
+   Good Grip       0.77      1.00      0.87        57
+
+   micro avg       0.83      0.83      0.83       100
+   macro avg       0.89      0.80      0.81       100
+weighted avg       0.87      0.83      0.82       100
+
+(3, 3)
+Training set score: 0.830000
+Test set score: 0.860000
+[[29 14]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.67      0.81        43
+   Good Grip       0.80      1.00      0.89        57
+
+   micro avg       0.86      0.86      0.86       100
+   macro avg       0.90      0.84      0.85       100
+weighted avg       0.89      0.86      0.85       100
+
+(3, 2)
+Training set score: 0.842000
+Test set score: 0.810000
+[[24 19]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.56      0.72        43
+   Good Grip       0.75      1.00      0.86        57
+
+   micro avg       0.81      0.81      0.81       100
+   macro avg       0.88      0.78      0.79       100
+weighted avg       0.86      0.81      0.80       100
+
+(3, 1)
+Training set score: 0.846000
+Test set score: 0.800000
+[[23 20]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.53      0.70        43
+   Good Grip       0.74      1.00      0.85        57
+
+   micro avg       0.80      0.80      0.80       100
+   macro avg       0.87      0.77      0.77       100
+weighted avg       0.85      0.80      0.78       100
+
+(2, 2)
+Training set score: 0.834000
+Test set score: 0.850000
+[[35  8]
+ [ 7 50]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.83      0.81      0.82        43
+   Good Grip       0.86      0.88      0.87        57
+
+   micro avg       0.85      0.85      0.85       100
+   macro avg       0.85      0.85      0.85       100
+weighted avg       0.85      0.85      0.85       100
+
+(2, 1)
+Training set score: 0.560000
+Test set score: 0.570000
+[[ 0 43]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.00      0.00      0.00        43
+   Good Grip       0.57      1.00      0.73        57
+
+   micro avg       0.57      0.57      0.57       100
+   macro avg       0.28      0.50      0.36       100
+weighted avg       0.32      0.57      0.41       100
+
+(1, 1)
+Training set score: 0.560000
+Test set score: 0.570000
+[[ 0 43]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.00      0.00      0.00        43
+   Good Grip       0.57      1.00      0.73        57
+
+   micro avg       0.57      0.57      0.57       100
+   macro avg       0.28      0.50      0.36       100
+weighted avg       0.32      0.57      0.41       100
+
+ & 57 & 57 & 52 & 57 & 48 & 57 & 55 & 49 & 57 & 54 & 56 & 49 & 57 & 57 & 57 & 57 & 57 & 50 & 57 & 57
+ & 23 & 17 & 11 & 14 & 6 & 18 & 14 & 5 & 18 & 14 & 14 & 5 & 16 & 17 & 14 & 19 & 20 & 8 & 43 & 43
+ & 0 & 0 & 5 & 0 & 9 & 0 & 2 & 8 & 0 & 3 & 1 & 8 & 0 & 0 & 0 & 0 & 0 & 7 & 0 & 0
+ & 20 & 26 & 32 & 29 & 37 & 25 & 29 & 38 & 25 & 29 & 29 & 38 & 27 & 26 & 29 & 24 & 23 & 35 & 0 & 0
+ & 0.71 & 0.77 & 0.83 & 0.8 & 0.89 & 0.76 & 0.8 & 0.91 & 0.76 & 0.79 & 0.8 & 0.91 & 0.78 & 0.77 & 0.8 & 0.75 & 0.74 & 0.86 & 0.57 & 0.57
+ & 1.0 & 1.0 & 0.86 & 1.0 & 0.8 & 1.0 & 0.94 & 0.83 & 1.0 & 0.91 & 0.97 & 0.83 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 0.83 & NA & NA
+(5, 3)
+identity
+Training set score: 0.838000
+Test set score: 0.820000
+[[25 18]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.58      0.74        43
+   Good Grip       0.76      1.00      0.86        57
+
+   micro avg       0.82      0.82      0.82       100
+   macro avg       0.88      0.79      0.80       100
+weighted avg       0.86      0.82      0.81       100
+
+logistic
+Training set score: 0.858000
+Test set score: 0.850000
+[[28 15]
+ [ 0 57]]
+              precision    recall  f1-score   support
+
+    Bad Grip       1.00      0.65      0.79        43
+   Good Grip       0.79      1.00      0.88        57
+
+   micro avg       0.85      0.85      0.85       100
+   macro avg       0.90      0.83      0.84       100
+weighted avg       0.88      0.85      0.84       100
+
+tanh
+Training set score: 0.866000
+Test set score: 0.730000
+[[38  5]
+ [22 35]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.63      0.88      0.74        43
+   Good Grip       0.88      0.61      0.72        57
+
+   micro avg       0.73      0.73      0.73       100
+   macro avg       0.75      0.75      0.73       100
+weighted avg       0.77      0.73      0.73       100
+
+relu
+Training set score: 0.860000
+Test set score: 0.870000
+[[38  5]
+ [ 8 49]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.83      0.88      0.85        43
+   Good Grip       0.91      0.86      0.88        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.87      0.87      0.87       100
+
+lbfgs
+Training set score: 0.862000
+Test set score: 0.820000
+[[28 15]
+ [ 3 54]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.90      0.65      0.76        43
+   Good Grip       0.78      0.95      0.86        57
+
+   micro avg       0.82      0.82      0.82       100
+   macro avg       0.84      0.80      0.81       100
+weighted avg       0.83      0.82      0.81       100
+
+sgd
+Training set score: 0.860000
+Test set score: 0.870000
+[[38  5]
+ [ 8 49]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.83      0.88      0.85        43
+   Good Grip       0.91      0.86      0.88        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.87      0.87      0.87       100
+
+adam
+Training set score: 0.844000
+Test set score: 0.870000
+[[33 10]
+ [ 3 54]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.92      0.77      0.84        43
+   Good Grip       0.84      0.95      0.89        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.88      0.86      0.86       100
+weighted avg       0.88      0.87      0.87       100
+
+(4, 3)
+identity
+Training set score: 0.834000
+Test set score: 0.870000
+[[39  4]
+ [ 9 48]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.81      0.91      0.86        43
+   Good Grip       0.92      0.84      0.88        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.88      0.87      0.87       100
+
+logistic
+Training set score: 0.862000
+Test set score: 0.870000
+[[34  9]
+ [ 4 53]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.89      0.79      0.84        43
+   Good Grip       0.85      0.93      0.89        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.86      0.87       100
+weighted avg       0.87      0.87      0.87       100
+
+tanh
+Training set score: 0.852000
+Test set score: 0.830000
+[[36  7]
+ [10 47]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.78      0.84      0.81        43
+   Good Grip       0.87      0.82      0.85        57
+
+   micro avg       0.83      0.83      0.83       100
+   macro avg       0.83      0.83      0.83       100
+weighted avg       0.83      0.83      0.83       100
+
+relu
+Training set score: 0.850000
+Test set score: 0.870000
+[[38  5]
+ [ 8 49]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.83      0.88      0.85        43
+   Good Grip       0.91      0.86      0.88        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.87      0.87      0.87       100
+
+lbfgs
+Training set score: 0.848000
+Test set score: 0.780000
+[[41  2]
+ [20 37]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.67      0.95      0.79        43
+   Good Grip       0.95      0.65      0.77        57
+
+   micro avg       0.78      0.78      0.78       100
+   macro avg       0.81      0.80      0.78       100
+weighted avg       0.83      0.78      0.78       100
+
+sgd
+Training set score: 0.850000
+Test set score: 0.870000
+[[38  5]
+ [ 8 49]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.83      0.88      0.85        43
+   Good Grip       0.91      0.86      0.88        57
+
+   micro avg       0.87      0.87      0.87       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.87      0.87      0.87       100
+
+adam
+Training set score: 0.854000
+Test set score: 0.880000
+[[38  5]
+ [ 7 50]]
+              precision    recall  f1-score   support
+
+    Bad Grip       0.84      0.88      0.86        43
+   Good Grip       0.91      0.88      0.89        57
+
+   micro avg       0.88      0.88      0.88       100
+   macro avg       0.88      0.88      0.88       100
+weighted avg       0.88      0.88      0.88       100
+

@@ -6,6 +6,9 @@ import os
 import json
 import pickle
 
+import random
+from sklearn.model_selection import train_test_split
+# import numpy as np
 
 
 class sensor_data_struct():
@@ -51,7 +54,8 @@ TOF Sensor - Don't use lux
 # dump_filename = 'TOF_combined_leaf_data.txt'
 # dump_filename = 'TOF_test_leaf_data.txt'
 # dump_filename = 'TOF_final_test_leaf_data.txt'
-# for i in [1,2,3,4,5]:
+# for i in [1,2,3,4,5]: #,3,4,5]:
+# for i in [6]:
 #     filename = 'TOF_data_' + str(i) + '.txt'
 #     with open(filename, 'r') as filehandle:
 #         data_set = pickle.load(filehandle)
@@ -64,9 +68,10 @@ TOF Sensor - Don't use lux
 """
 IR and Color Sensor -Just RGB
 """
-# # dump_filename = 'IR_Color_k_combined_data.txt'
-# dump_filename = 'IR_Color_rgb_test_data.txt'
-# for i in [6]: #[1,2,3,4,5]:
+# # dump_filename = 'IR_Color_rgb_combined_data.txt'
+# # dump_filename = 'IR_Color_rgb_test_data.txt'
+# dump_filename = 'IR_Color_rgb_final_test_data.txt'
+# for i in [7]: #[1,2,3,4,5]:
 #     filename = 'IR_Color_data_' + str(i) + '.txt'
 #     with open(filename, 'r') as filehandle:
 #         data_set = pickle.load(filehandle)
@@ -79,12 +84,13 @@ IR and Color Sensor -Just RGB
 """
 TOF and Color Sensor - No lux and just RGB.
 """
-# # dump_filename = 'TOF_Color_rgb_combined_data.txt'
-# dump_filename = 'TOF_Color_rgb_test_data.txt'
+# dump_filename = 'TOF_Color_rgb_combined_data.txt'
+# # dump_filename = 'TOF_Color_rgb_test_data.txt'
 # # dump_filename = 'TOF_Color_rgb_final_test_data.txt'
 # # dump_filename = 'TOF_Color_k_combined_data.txt'
 # # dump_filename = 'TOF_Color_all_combined_data.txt'
-# for i in [6]: #[1,2,3,4,5]:
+# for i in [1,2,3,4,5]:
+# # for i in [6]:
 #     filename = 'TOF_Color_data_' + str(i) + '.txt'
 #     with open(filename, 'r') as filehandle:
 #         data_set = pickle.load(filehandle)
@@ -103,13 +109,13 @@ TOF and Color Sensor - No lux and just RGB.
 
 
 """
-IR and Color Sensor -Just RGB
+IR, TOF and Color Sensor -Just RGB
 """
-
-dump_filename = 'IR_TOF_Color_rgb_combined_data.txt'
-# dump_filename = 'IR_TOF_Color_rgb_test_data.txt'
-# dump_filename = 'IR_TOF_Color_rgb_final_test_data.txt'
-for i in [1,2,3,4,5]:
+#
+dump_comb_filename = 'IR_TOF_Color_combined_data.txt'
+dump_test_filename = 'IR_TOF_Color_test_data.txt'
+dump_final_filename = 'IR_TOF_Color_final_test_data.txt'
+for i in [1,2,3,4,5,6,7,8,9,10,11,12]:
     filename = 'IR_TOF_Color_data_' + str(i) + '.txt'
     with open(filename, 'r') as filehandle:
         data_set = pickle.load(filehandle)
@@ -138,6 +144,22 @@ for i in [1,2,3,4,5]:
 
 # comb_data = berry_set
 
+comb, temp_split = train_test_split(berry_set, test_size=200.0/1200.0)
+
+test, final = train_test_split(temp_split, test_size=0.5)
+
+print(len(comb))
+print(len(test))
+print(len(final))
+
 os.chdir('/home/ben/gripper_proj_2/data/combined_data/')
-with open(dump_filename, 'w') as filehandle:
-        json.dump(berry_set, filehandle)
+with open(dump_comb_filename, 'w') as filehandle:
+        json.dump(comb, filehandle)
+
+os.chdir('/home/ben/gripper_proj_2/data/combined_data/')
+with open(dump_test_filename, 'w') as filehandle:
+        json.dump(test, filehandle)
+
+os.chdir('/home/ben/gripper_proj_2/data/combined_data/')
+with open(dump_final_filename, 'w') as filehandle:
+        json.dump(final, filehandle)

@@ -25,13 +25,13 @@ Import datasets
 os.chdir('/home/ben/gripper_proj_2/data/combined_data/')
 
 
-filename = 'IR_combined_data.txt'
-filename_test = 'IR_final_test_data.txt'
-size_of_data = 3
+# filename = 'IR_combined_data.txt'
+# filename_test = 'IR_final_test_data.txt'
+# size_of_data = 3
 #
-# filename = 'TOF_combined_data.txt'
-# filename_test = 'TOF_final_test_data.txt'
-# size_of_data = 6
+filename = 'TOF_combined_data.txt'
+filename_test = 'TOF_final_test_data.txt'
+size_of_data = 3
 
 # filename = 'IR_Color_all_combined_data.txt'
 # size_of_data = 8
@@ -66,7 +66,7 @@ properties_train = scaler.transform(properties_train)
 properties_test = scaler.transform(properties_test)
 
 
-classifier = KNeighborsClassifier(n_neighbors=5)
+classifier = KNeighborsClassifier(n_neighbors=12)
 classifier.fit(properties_train, labels_train)
 
 labels_pred = classifier.predict(properties_test)

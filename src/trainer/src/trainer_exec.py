@@ -330,6 +330,7 @@ def read_IR_sensor(sen_cmd):
     data = copy.copy(sensor_IR_reading)
     sensor_IR_reading = [-1, -1, -1]
     # print("IR Read")
+    print(data)
     return data
 
 """
@@ -343,6 +344,7 @@ def read_color_sensor(sen_cmd):
         pass
     data = copy.copy(sensor_color_reading)
     sensor_color_reading = [-1, -1, -1, -1, -1, -1.0]
+    print(data)
     # print("Color Read")
     return data
 
@@ -372,7 +374,7 @@ def leaf_test(pos_cmd, sen_IR_cmd, sen_TOF_cmd, sen_color_cmd):
     # Create a file name
     filename = file_menu()
     # Read number of cycles
-    num_cycles = 20
+    num_cycles = 50
     for a in range(num_cycles):
         # Press button to advance
         print("Press button to take reading.")
@@ -402,7 +404,7 @@ def leaf_test(pos_cmd, sen_IR_cmd, sen_TOF_cmd, sen_color_cmd):
 
     # with open('data/' + filename + '_leaf.txt', 'w') as filehandle:
     # with open('data/' + filename + '_leaf_test.txt', 'w') as filehandle:
-    with open('data/' + filename + '_leaf_final_test.txt', 'w') as filehandle:
+    with open('data/' + filename + '_leaf_data.txt', 'w') as filehandle:
         #json.dump(data_collected, filehandle)
         pickle.dump(data_collected, filehandle)
 
